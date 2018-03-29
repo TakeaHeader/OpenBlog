@@ -1,0 +1,13 @@
+html,body{width: 100%;height: 100%;}
+/*********/
+.header{background-color: gray;max-width: 100%;height: 10%;}
+.header > .logo{background-color: #00C0E9;width: 13%;max-width:13%;height: 100%;}
+.header > .note{background-color: #33495B;width: 87%;max-width:87%;height: 100%;}
+
+/********/
+.center{height: 90%;}
+.firstmenu{color: white;padding: 10px 20px;}
+.firstmenu:hover{background-color: #253240;}
+
+.center > .menus{background-color: #33495B;width: 13%;max-width:13%;height: 100%;}
+.center > .main{width: 87%;max-width:87%;height: 100%;}
