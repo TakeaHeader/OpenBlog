@@ -52,4 +52,6 @@
         <property name="dataSource" ref="ds_blog"></property>
     </bean>
 
+    <bean id="holer" class="site.btsearch.tools.SpringApplicationContextHoler"></bean>
+
 </beans>

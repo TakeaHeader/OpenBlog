@@ -1,2 +1,6 @@
+site\btsearch\tools\Assert.class
+site\btsearch\tools\SpringApplicationContextHoler.class
+site\btsearch\Dao\JDBCConn.class
 site\btsearch\tools\PropertiesReader.class
+site\btsearch\tools\Constant.class
 site\btsearch\front\Index.class

@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: site.btsearch.tools.TestPropertiesReader
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.166 sec <<< FAILURE!
-TestLoadProperties(site.btsearch.tools.TestPropertiesReader)  Time elapsed: 0.102 sec  <<< FAILURE!
-java.lang.AssertionError: expected null, but was:<site.btsearch.tools.PropertiesReader@17de52ea>
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.146 sec <<< FAILURE!
+TestLoadProperties(site.btsearch.tools.TestPropertiesReader)  Time elapsed: 0.145 sec  <<< FAILURE!
+java.lang.AssertionError: expected null, but was:<site.btsearch.tools.PropertiesReader@5d0005fa>
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotNull(Assert.java:755)
 	at org.junit.Assert.assertNull(Assert.java:737)

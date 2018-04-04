@@ -93,7 +93,7 @@
             <charset>utf-8</charset>
             <contextReloadable>true</contextReloadable>
             <port>80</port>
-            <contextFile>context.xml</contextFile>
+            <contextFile>src/main/resources/context.xml</contextFile>
           </configuration>
         </plugin>
       </plugins>
@@ -105,4 +105,9 @@
       </resource>
     </resources>
   </build>
+  <properties>
+    <file.encoding>UTF-8</file.encoding>
+    <java.source.version>1.7</java.source.version>
+    <java.target.version>1.7</java.target.version>
+  </properties>
 </project>
