@@ -11,8 +11,36 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-
+    <!--自动扫描bean-->
     <context:component-scan base-package="site.btsearch" annotation-config="true" />
+    <!--为注解配置hanlder-->
+    <bean id="adapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"></bean>
+    <!--为注解配置hanlderMapping-->
+    <bean id="annotationHandlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="defaultHandler" ref="adapter"></property>
+    </bean>
+
+    <!--html 解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="contentType" value="text/html"></property>
+        <property name="prefix" value="/"></property>
+        <property name="suffix" value=".html"></property>
+    </bean>
+
+    <!--静态资源映射-->
+    <mvc:resources mapping="/user.html" location="/user.html"></mvc:resources>
+    <mvc:resources mapping="/user.css" location="/user.css"></mvc:resources>
+    <mvc:resources mapping="/login.html" location="/login.html"></mvc:resources>
+    <mvc:resources mapping="/login.css" location="/login.css"></mvc:resources>
+
+    <mvc:resources mapping="/admin/**" location="/admin/"></mvc:resources>
+    <mvc:resources mapping="/config/**" location="/config/"></mvc:resources>
+    <mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
+    <mvc:resources mapping="/lib/**" location="/lib/"></mvc:resources>
+    <mvc:resources mapping="/script/**" location="/script/"></mvc:resources>
+
+
+
 
 
 </beans>

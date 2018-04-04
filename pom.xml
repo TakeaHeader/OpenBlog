@@ -93,6 +93,7 @@
             <charset>utf-8</charset>
             <contextReloadable>true</contextReloadable>
             <port>80</port>
+            <contextFile>context.xml</contextFile>
           </configuration>
         </plugin>
       </plugins>
