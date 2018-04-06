@@ -33,5 +33,4 @@
     -->	
     <!-- fivestar-->
  	    <Resource driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="2" maxWait="5000" name="jdbc/blog" password="mysql" type="javax.sql.DataSource" url="jdbc:mysql://127.0.0.1:3306/blog" username="mysql"/>
-		<!--<Resource driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="2" maxWait="5000" name="jdbc/sh" password="aaaa" type="javax.sql.DataSource" url="jdbc:oracle:thin:@172.26.128.47:1521:ORCL" username="pmcs"/> -->
   </Context>

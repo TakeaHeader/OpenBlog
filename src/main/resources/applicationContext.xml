@@ -52,6 +52,15 @@
         <property name="dataSource" ref="ds_blog"></property>
     </bean>
 
+    <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds_blog"></property>
+        <property name="configLocation" value="classpath:select_config.xml"></property>
+    </bean>
+
+    <bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="factory"></constructor-arg>
+    </bean>
+
     <bean id="holer" class="site.btsearch.tools.SpringApplicationContextHoler"></bean>
 
 </beans>
