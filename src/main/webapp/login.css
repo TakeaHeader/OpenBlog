@@ -7,5 +7,5 @@ body{background-color: #E0E2D7;}
 .login > .field > .p_id > #id{background-color:#ffffff; border: none;height: 30px;width: 250px;margin: 0 auto;display:block;padding-left: 15px;}
 .login > .field > .p_pwd > #pwd{background-color:#ffffff;border: none;height: 30px;width: 250px;margin: 0 auto;display:block;padding-left: 15px;}
 .login > .submit{margin-top: 30px;margin-bottom: 30px;}
-.login > .submit > #b_submit{background-color: #2C7BF1;border: none;height: 35px;width: 265px;margin: 0 auto;display:block;color: #ffffff;border-radius: 3px;}
-.login > .submit > #b_submit:hover{cursor: pointer;}
+.login > .submit > #submit{background-color: #2C7BF1;border: none;height: 35px;width: 265px;margin: 0 auto;display:block;color: #ffffff;border-radius: 3px;}
+.login > .submit > #submit:hover{cursor: pointer;}

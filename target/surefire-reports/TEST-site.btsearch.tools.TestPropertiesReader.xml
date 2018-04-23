@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="1" time="0.145" errors="0" skipped="0" tests="1" name="site.btsearch.tools.TestPropertiesReader">
+<testsuite failures="1" time="0.011" errors="0" skipped="0" tests="1" name="site.btsearch.tools.TestPropertiesReader">
   <properties>
     <property name="idea.version" value="2017.2.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -46,7 +46,7 @@
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_75\jre"/>
-    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2017.2.1 -s D:\apache-maven-3.5.3\conf\settings.xml test"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2017.2.1 -s D:\apache-maven-3.5.3\conf\settings.xml package"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="zh"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -63,8 +63,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.145" classname="site.btsearch.tools.TestPropertiesReader" name="TestLoadProperties">
-    <failure message="expected null, but was:&lt;site.btsearch.tools.PropertiesReader@5d0005fa&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected null, but was:&lt;site.btsearch.tools.PropertiesReader@5d0005fa&gt;
+  <testcase time="0.011" classname="site.btsearch.tools.TestPropertiesReader" name="TestLoadProperties">
+    <failure message="expected null, but was:&lt;site.btsearch.tools.PropertiesReader@c2909a1&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected null, but was:&lt;site.btsearch.tools.PropertiesReader@c2909a1&gt;
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotNull(Assert.java:755)
 	at org.junit.Assert.assertNull(Assert.java:737)

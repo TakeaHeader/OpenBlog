@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: site.btsearch.tools.TestAssert
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.076 sec <<< FAILURE!
-TestIsNull(site.btsearch.tools.TestAssert)  Time elapsed: 0.008 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.141 sec <<< FAILURE!
+TestIsNull(site.btsearch.tools.TestAssert)  Time elapsed: 0.007 sec  <<< ERROR!
 java.lang.NullPointerException
-	at site.btsearch.tools.Assert.isNull(Assert.java:9)
+	at site.btsearch.tools.Assert.isNull(Assert.java:19)
 	at site.btsearch.tools.TestAssert.TestIsNull(TestAssert.java:13)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)

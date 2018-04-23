@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc" xsi:schemaLocation="
-           http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-4.3.xsd
@@ -9,10 +12,57 @@
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
            http://www.springframework.org/schema/aop
-           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
-
+    <!--自动扫描bean-->
     <context:component-scan base-package="site.btsearch" annotation-config="true" />
+    <mvc:annotation-driven />
+    <!--&lt;!&ndash;为注解配置hanlder&ndash;&gt;
+    <bean id="adapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"></bean>
+    &lt;!&ndash;为注解配置hanlderMapping&ndash;&gt;
+    <bean id="annotationHandlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="defaultHandler" ref="adapter"></property>
+    </bean>-->
 
+    <!--html 解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="contentType" value="text/html"></property>
+        <property name="prefix" value="/"></property>
+        <property name="suffix" value=".html"></property>
+    </bean>
+
+    <!--静态资源映射-->
+    <mvc:resources mapping="/user.html" location="/user.html"></mvc:resources>
+    <mvc:resources mapping="/user.css" location="/user.css"></mvc:resources>
+    <mvc:resources mapping="/login.html" location="/login.html"></mvc:resources>
+    <mvc:resources mapping="/login.css" location="/login.css"></mvc:resources>
+    <mvc:resources mapping="/login.js" location="/login.js"></mvc:resources>
+
+    <mvc:resources mapping="/admin/**" location="/admin/"></mvc:resources>
+    <mvc:resources mapping="/config/**" location="/config/"></mvc:resources>
+    <mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
+    <mvc:resources mapping="/lib/**" location="/lib/"></mvc:resources>
+    <mvc:resources mapping="/script/**" location="/script/"></mvc:resources>
+
+    <bean id="ds_blog" class="org.springframework.jndi.JndiObjectFactoryBean" scope="singleton">
+        <property name="jndiName">
+            <value>java:comp/env/jdbc/blog</value>
+        </property>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="ds_blog"></property>
+    </bean>
+
+    <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds_blog"></property>
+        <property name="configLocation" value="classpath:select_config.xml"></property>
+    </bean>
+
+    <bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="factory"></constructor-arg>
+    </bean>
+
+    <bean id="holer" class="site.btsearch.tools.SpringApplicationContextHoler"></bean>
 
 </beans>

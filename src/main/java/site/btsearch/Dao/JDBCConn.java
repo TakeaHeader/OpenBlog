@@ -6,9 +6,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class JDBCConn {
 
-
-    @Autowired
-    protected JdbcTemplate jdbcTemplate;
     @Autowired
     protected SqlSessionTemplate sqlSessionTemplate;
 
