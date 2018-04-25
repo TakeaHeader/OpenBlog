@@ -1,14 +1,15 @@
 var F = {};
 
 F.ajax = function (json) {
+    debugger;
     var ajaxJson = {};
-    ajaxJson["contentType"]= F.isNull(json.contentType) ? "" : json.contentType;
+    ajaxJson["contentType"]= F.isNull(json.contentType) ? "application/x-www-form-urlencoded; charset=UTF-8" : json.contentType;
     ajaxJson["async"]= F.isNull(json.async) ? false : json.async;
     ajaxJson["type"]= F.isNull(json.type) ? "POST" : "GET";
     ajaxJson["url"]= F.isNull(json.url) ? "" : json.url;
     var data = F.isNull(json.data) ? {} : json.data;
     data['sign'] = Math.random();
-    ajaxJson["data"]= data;
+    ajaxJson["data"]= {data:JSON.stringify(data)};
     ajaxJson["headers"]= F.isNull(json.headers) ? {} : json.headers;
     ajaxJson["beforeSend"] = function (xhr) {
         xhr.onprogress = function (event) {

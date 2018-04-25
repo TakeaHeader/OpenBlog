@@ -21,11 +21,19 @@
     <mvc:interceptors>
         <bean class="site.btsearch.Interceptor"></bean>
     </mvc:interceptors>
+    <!--JSON视图-->
+    <bean id="JsonView" class="site.btsearch.view.JsonView"></bean>
     <!--html 解析器-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean id="ResourceView" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="contentType" value="text/html"></property>
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".html"></property>
+        <property name="order" value="1"></property>
+    </bean>
+
+    <bean id="jsonViewResolver" class="site.btsearch.view.JsonViewResolver">
+        <property name="view" ref="JsonView"></property>
+        <property name="order" value="2"></property>
     </bean>
 
     <!--静态资源映射-->

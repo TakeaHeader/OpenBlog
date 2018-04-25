@@ -21,7 +21,6 @@ public class Index {
 
     @RequestMapping("/")
     public String forward(HttpServletRequest request){
-        HttpSession session = request.getSession();
         return "login";
     }
 

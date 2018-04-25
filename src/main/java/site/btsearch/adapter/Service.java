@@ -1,14 +1,11 @@
 package site.btsearch.adapter;
 
-import java.util.Map;
+import site.btsearch.Dao.JQuery;
 
-public interface Service {
+public abstract class Service {
 
-    public Boolean PreService() throws Exception;
+        protected JQuery QueryService;
 
-    public Map Service() throws Exception;
-
-    public Map AfterService() throws Exception;
 
 
 }
