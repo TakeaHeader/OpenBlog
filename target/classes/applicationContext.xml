@@ -22,18 +22,18 @@
         <bean class="site.btsearch.Interceptor"></bean>
     </mvc:interceptors>
     <!--JSON视图-->
-    <bean id="JsonView" class="site.btsearch.view.JsonView"></bean>
+    <bean id="JSON" class="site.btsearch.view.JsonView"></bean>
     <!--html 解析器-->
     <bean id="ResourceView" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="contentType" value="text/html"></property>
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".html"></property>
-        <property name="order" value="1"></property>
+        <property name="order" value="2"></property>
     </bean>
 
     <bean id="jsonViewResolver" class="site.btsearch.view.JsonViewResolver">
-        <property name="view" ref="JsonView"></property>
-        <property name="order" value="2"></property>
+        <!--<property name="view" ref="JsonView"></property>-->
+        <property name="order" value="1"></property>
     </bean>
 
     <!--静态资源映射-->
@@ -68,5 +68,20 @@
     </bean>
 
     <bean id="holer" class="site.btsearch.tools.SpringApplicationContextHoler"></bean>
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="ds_blog"/>
+    </bean>
+
+    <tx:advice id="txAdvice_blog" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="call*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
 
 </beans>
