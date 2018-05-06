@@ -24,7 +24,7 @@ public class Index {
 
     @RequestMapping("/")
     public String forward(HttpServletRequest request){
-        return "login";
+        return "admin/index";
     }
 
 
