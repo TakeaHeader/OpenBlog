@@ -32,5 +32,5 @@
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->	
     <!-- fivestar-->
- 	    <Resource driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="2" maxWait="5000" name="jdbc/blog" password="mysql" type="javax.sql.DataSource" url="jdbc:mysql://127.0.0.1:3306/blog" username="mysql"/>
+ 	    <Resource driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="2" maxWait="5000" name="jdbc/blog" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://127.0.0.1:3306/blog" username="root"/>
   </Context>

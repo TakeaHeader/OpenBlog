@@ -12,7 +12,6 @@ public class SpringApplicationContextHoler implements ApplicationContextAware {
         SpringApplicationContextHoler.applicationContext = applicationContext;
     }
 
-
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }

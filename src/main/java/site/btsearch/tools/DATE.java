@@ -11,7 +11,7 @@ public class DATE {
 
 
     public static String getYMD(){
-        return getDateString("YYYY-MM-DD");
+        return getDateString("YYYY-MM-dd");
     }
 
     public static String getDateString(String pattern){
@@ -20,4 +20,11 @@ public class DATE {
         return sdf.format(date);
     }
 
+    public static String getFull(){
+        return getDateString("YYYY-MM-dd HH:mm:ss");
+    }
+
+    public static void main(String[]args){
+        System.out.println(getFull());
+    }
 }

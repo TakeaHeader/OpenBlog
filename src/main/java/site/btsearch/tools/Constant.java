@@ -8,7 +8,12 @@ public class Constant {
 
     public static final String JSONVIEW = "JSON";
 
-    public static final String RESOURCEVIEW  = "ResourceView";
+    /***
+     *
+     */
+    public static final int DATA = 1;
+
+    public static final int FORWARD = 2;
 
 
 }

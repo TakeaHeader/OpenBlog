@@ -15,23 +15,29 @@
            http://www.springframework.org/schema/aop/spring-aop-4.3.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
     <!--自动扫描bean-->
+
     <context:component-scan base-package="site.btsearch" annotation-config="true" />
     <mvc:annotation-driven />
-    <!--&lt;!&ndash;为注解配置hanlder&ndash;&gt;
-    <bean id="adapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"></bean>
-    &lt;!&ndash;为注解配置hanlderMapping&ndash;&gt;
-    <bean id="annotationHandlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-        <property name="defaultHandler" ref="adapter"></property>
-    </bean>-->
 
-    <!--html 解析器-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <mvc:interceptors>
+        <bean class="site.btsearch.Interceptor"></bean>
+    </mvc:interceptors>
+    <!--&lt;!&ndash;JSON视图&ndash;&gt;-->
+    <bean id="JSON" class="site.btsearch.view.JsonView"></bean>
+    <!--&lt;!&ndash;html 解析器&ndash;&gt;-->
+    <bean id="ResourceView" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="contentType" value="text/html"></property>
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".html"></property>
+        <property name="order" value="2"></property>
     </bean>
 
-    <!--静态资源映射-->
+    <bean id="jsonViewResolver" class="site.btsearch.view.JsonViewResolver">
+        <!--<property name="view" ref="JSON"></property>-->
+        <property name="order" value="1"></property>
+    </bean>
+
+    <!--&lt;!&ndash;静态资源映射&ndash;&gt;-->
     <mvc:resources mapping="/user.html" location="/user.html"></mvc:resources>
     <mvc:resources mapping="/user.css" location="/user.css"></mvc:resources>
     <mvc:resources mapping="/login.html" location="/login.html"></mvc:resources>
@@ -49,8 +55,7 @@
             <value>java:comp/env/jdbc/blog</value>
         </property>
     </bean>
-
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+   <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="ds_blog"></property>
     </bean>
 
@@ -64,5 +69,6 @@
     </bean>
 
     <bean id="holer" class="site.btsearch.tools.SpringApplicationContextHoler"></bean>
+
 
 </beans>

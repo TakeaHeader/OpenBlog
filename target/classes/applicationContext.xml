@@ -16,15 +16,16 @@
 
     <!--自动扫描bean-->
     <context:component-scan base-package="site.btsearch" annotation-config="true" />
+
     <mvc:annotation-driven />
 
     <mvc:interceptors>
-        <bean class="site.btsearch.Interceptor"></bean>
+            <bean class="site.btsearch.Interceptor"></bean>
     </mvc:interceptors>
-    <!--JSON视图-->
+    <!--&lt;!&ndash;JSON视图&ndash;&gt;-->
     <bean id="JSON" class="site.btsearch.view.JsonView"></bean>
-    <!--html 解析器-->
-    <bean id="ResourceView" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!--&lt;!&ndash;html 解析器&ndash;&gt;-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="contentType" value="text/html"></property>
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".html"></property>
@@ -32,11 +33,11 @@
     </bean>
 
     <bean id="jsonViewResolver" class="site.btsearch.view.JsonViewResolver">
-        <!--<property name="view" ref="JsonView"></property>-->
+        <!--<property name="view" ref="JSON"></property>-->
         <property name="order" value="1"></property>
     </bean>
 
-    <!--静态资源映射-->
+    <!--&lt;!&ndash;静态资源映射&ndash;&gt;-->
     <mvc:resources mapping="/user.html" location="/user.html"></mvc:resources>
     <mvc:resources mapping="/user.css" location="/user.css"></mvc:resources>
     <mvc:resources mapping="/login.html" location="/login.html"></mvc:resources>
@@ -54,13 +55,20 @@
             <value>java:comp/env/jdbc/blog</value>
         </property>
     </bean>
-   <!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="ds_blog"></property>
-    </bean>-->
+    </bean>
 
     <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="ds_blog"></property>
         <property name="configLocation" value="classpath:select_config.xml"></property>
+        <property name="mapperLocations" value="classpath*:site/btsearch/mapper/*mapper.xml"></property>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactory" ref="factory"></property>
+        <property name="basePackage" value="site.btsearch.mapper"></property>
     </bean>
 
     <bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
@@ -68,20 +76,5 @@
     </bean>
 
     <bean id="holer" class="site.btsearch.tools.SpringApplicationContextHoler"></bean>
-
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="ds_blog"/>
-    </bean>
-
-    <tx:advice id="txAdvice_blog" transaction-manager="txManager">
-        <tx:attributes>
-            <tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-            <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-            <tx:method name="call*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
-        </tx:attributes>
-    </tx:advice>
-
 
 </beans>

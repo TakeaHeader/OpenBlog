@@ -24,6 +24,11 @@ public final class JSON {
         return JSONObject.toJSONBytes(obj, SerializerFeatureS);
     }
 
+    public static JSONObject toJSONObject(String Json){
+        SerializerFeature[] SerializerFeatureS = new SerializerFeature[]{SerializerFeature.WriteNullStringAsEmpty,SerializerFeature.WriteNullNumberAsZero,SerializerFeature.WriteNullListAsEmpty,SerializerFeature.WriteMapNullValue};
+        return JSONObject.parseObject(Json);
+    }
+
 
 
 
