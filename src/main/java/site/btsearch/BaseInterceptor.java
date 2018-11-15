@@ -1,6 +1,5 @@
 package site.btsearch;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -10,12 +9,18 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UrlPathHelper;
 import site.btsearch.adapter.Service;
+import site.btsearch.exception.OperationException;
 import site.btsearch.tools.Constant;
+import site.btsearch.tools.DATE;
+import site.btsearch.tools.JSON;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,9 +87,6 @@ public abstract class BaseInterceptor extends Service implements HandlerIntercep
     }
 
 
-    protected void Error(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e){};
-
-
     public boolean checkUri(HttpServletRequest Request, HttpServletResponse response){
         String path = pathHelper.getRequestUri(Request);
         if(path.indexOf("/admin") != -1){
@@ -96,7 +98,7 @@ public abstract class BaseInterceptor extends Service implements HandlerIntercep
                 return false;
             }
             for (int i = 0; i < cookies.length; i ++){
-                if("uid".equals(cookies[i].getName())){
+                if("authtoken".equals(cookies[i].getName())){
                     if(cookies[i].getValue().length() == 0){
                         return false;
                     }else {
@@ -104,15 +106,55 @@ public abstract class BaseInterceptor extends Service implements HandlerIntercep
                     }
                 }
             }
+            return false;
+        }else{
             return true;
         }
-        return true;
     }
 
 
     public boolean checkIP(HttpServletRequest Request){
-        String IP = Request.getRemoteAddr();
+        String IP  = Request.getHeader("x-forwarded-for") == null? Request.getRemoteAddr(): Request.getHeader("x-forwarded-for");
+        logger.debug("Check IP:"+IP);
         return pubService.IsNotAllowIP(IP);
+    }
+
+
+    protected void Error(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
+        logger.debug(e);
+        if(e instanceof OperationException){
+            Map result = new HashMap();
+            result.put("code",0);
+            result.put("msg",e.getMessage());
+            ServletOutputStream out = null;
+            try{
+                httpServletResponse.setContentType("application/json;charset=utf-8");
+                out = httpServletResponse.getOutputStream();
+                byte [] data = JSON.toByteArray(result);
+                out.write(data,0,data.length);
+                out.flush();
+                out.close();
+            }catch (Exception ex){
+                this.dealUnHandlerError(httpServletResponse,ex);
+            }finally {
+                if(out != null){
+                    try{
+                        out.close();
+                    }catch (IOException e1){
+                        logger.error(e1);
+                    }
+                }
+            }
+        }else{
+            this.dealUnHandlerError(httpServletResponse,e);
+        }
+    }
+
+
+    private void dealUnHandlerError(HttpServletResponse httpServletResponse, Exception e){
+        logger.error(e);
+        pubService.insertLog(e.getMessage(), DATE.getFull());
+        httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     }
 
 }

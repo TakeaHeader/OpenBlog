@@ -17,4 +17,6 @@ public interface UserApi extends Api{
 
     public int SaveSession(String SessionId,String UID,String datetime);
 
+    public String queryUser(String UID);
+
 }

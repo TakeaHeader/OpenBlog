@@ -9,6 +9,8 @@
       SELECT ID FROM PUB_IPFILTER WHERE IP = #{IP} LIMIT 0,1
     </select>
 
-
+    <insert id="insertLog" parameterType="java.lang.String" >
+        INSERT INTO PUB_LOG VALUES (0,#{Message},#{DateTime})
+    </insert>
 
 </mapper>

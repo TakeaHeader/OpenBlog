@@ -57,12 +57,12 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.4.1</version>
+      <version>${mybatis.version}</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>3.0.1</version>
+      <version>${servlet.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -78,7 +78,7 @@
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <version>${log4j.version}</version>
     </dependency>
     <dependency>
       <groupId>com.alibaba</groupId>
@@ -91,14 +91,24 @@
       <version>1.6</version>
     </dependency>
     <dependency>
-      <groupId>redis.clients</groupId>
-      <artifactId>jedis</artifactId>
-      <version>2.9.0</version>
-    </dependency>
-    <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
       <version>1.8.10</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.10.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aliyun</groupId>
+      <artifactId>aliyun-java-sdk-core</artifactId>
+      <version>3.2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aliyun</groupId>
+      <artifactId>aliyun-java-sdk-cms</artifactId>
+      <version>5.0.4</version>
     </dependency>
   </dependencies>
   <build>
@@ -132,10 +142,13 @@
     </resources>
   </build>
   <properties>
-    <file.encoding>UTF-8</file.encoding>
-    <java.source.version>1.7</java.source.version>
-    <java.target.version>1.7</java.target.version>
-    <spring.version>4.3.9.RELEASE</spring.version>
-    <mysql.version>5.1.41</mysql.version>
+      <file.encoding>UTF-8</file.encoding>
+      <java.source.version>1.7</java.source.version>
+      <java.target.version>1.7</java.target.version>
+      <spring.version>4.3.9.RELEASE</spring.version>
+      <mysql.version>5.1.41</mysql.version>
+      <log4j.version>1.2.17</log4j.version>
+      <mybatis.version>3.4.1</mybatis.version>
+      <servlet.version>3.0.1</servlet.version>
   </properties>
 </project>

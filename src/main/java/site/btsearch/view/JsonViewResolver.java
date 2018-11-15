@@ -4,7 +4,6 @@ import org.springframework.core.Ordered;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.AbstractCachingViewResolver;
 import site.btsearch.tools.Assert;
-
 import java.util.Locale;
 
 

@@ -20,4 +20,8 @@ public class PubApiImpl implements PubApi {
         return false;
     }
 
+    public int insertLog(String Message,String datetime){
+        return pubMapper.insertLog(Message,datetime);
+    }
+
 }

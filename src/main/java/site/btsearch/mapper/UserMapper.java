@@ -17,4 +17,6 @@ public interface UserMapper {
 
     public int insertSession(@Param("SESSIONID") String SessionId,@Param("UID")String UID,@Param("CREATEDATE")String datetime);
 
+    public String queryUser(String UID);
+
 }

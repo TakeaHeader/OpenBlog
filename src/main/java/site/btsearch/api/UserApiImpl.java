@@ -31,4 +31,9 @@ public class UserApiImpl implements UserApi {
     }
 
 
+    public String queryUser(String UID){
+        return UserService.queryUser(UID);
+    }
+
+
 }
