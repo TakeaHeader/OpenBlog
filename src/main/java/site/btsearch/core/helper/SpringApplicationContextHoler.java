@@ -1,8 +1,9 @@
-package site.btsearch.tools;
+package site.btsearch.core.helper;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import site.btsearch.core.tools.Assert;
 
 public class SpringApplicationContextHoler implements ApplicationContextAware {
 

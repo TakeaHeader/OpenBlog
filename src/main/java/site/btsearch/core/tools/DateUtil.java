@@ -1,14 +1,12 @@
-package site.btsearch.tools;
+package site.btsearch.core.tools;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DATE {
+public class DateUtil {
 
 
-    private DATE (){};
-
-
+    private DateUtil(){};
 
     public static String getYMD(){
         return getDateString("YYYY-MM-dd");

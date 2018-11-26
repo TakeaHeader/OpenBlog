@@ -1,4 +1,4 @@
-package site.btsearch.tools;
+package site.btsearch.core.tools;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -8,12 +8,12 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
  * @author wangjun
  *
  */
-public final class JSON {
+public final class JsonUtil {
 
     /**
      * 工具类,不允许实例化
      */
-    private JSON(){}
+    private JsonUtil(){}
 
     /***
      * @param obj 需要转化为字节数组的数据

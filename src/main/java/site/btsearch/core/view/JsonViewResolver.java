@@ -1,14 +1,14 @@
-package site.btsearch.view;
+package site.btsearch.core.view;
 
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.AbstractCachingViewResolver;
-import site.btsearch.tools.Assert;
+import site.btsearch.core.tools.Assert;
 import java.util.Locale;
 
 
 /***
- * viewName default is "JsonView",that is site.btsearch.view.JsonView
+ * viewName default is "JsonView",that is site.btsearch.core.view.JsonView
  * view is order to this viewName can not get bean for default view
  * order is defualt Integer.MAX_VALUE,you can change to order resolver
  *

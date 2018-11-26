@@ -1,4 +1,4 @@
-package site.btsearch.tools;
+package site.btsearch.core.tools;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;

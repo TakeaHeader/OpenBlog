@@ -1,20 +1,13 @@
-package site.btsearch.dao;
+package site.btsearch.core.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class JDBCConn {
+public class Conn {
 
 //    mybatis 数据源
     @Autowired
-    protected SqlSessionTemplate sqlSessionTemplate;
-
-
-//    spring 数据源
-    @Autowired
-    protected JdbcTemplate jdbcTemplate;
-
-
+    protected SqlSessionTemplate Template;
 
 }

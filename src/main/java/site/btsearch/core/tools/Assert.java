@@ -1,4 +1,4 @@
-package site.btsearch.tools;
+package site.btsearch.core.tools;
 
 /**
  * @Author  wangjun

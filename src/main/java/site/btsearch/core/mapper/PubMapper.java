@@ -1,4 +1,4 @@
-package site.btsearch.mapper;
+package site.btsearch.core.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

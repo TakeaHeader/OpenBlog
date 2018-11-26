@@ -1,4 +1,4 @@
-package site.btsearch;
+package site.btsearch.core;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
@@ -8,13 +8,10 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UrlPathHelper;
-import site.btsearch.adapter.Service;
-import site.btsearch.exception.OperationException;
-import site.btsearch.tools.Constant;
-import site.btsearch.tools.DATE;
-import site.btsearch.tools.JSON;
+import site.btsearch.core.exception.OperationException;
+import site.btsearch.core.tools.Constant;
+import site.btsearch.core.tools.JsonUtil;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,11 +21,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class BaseInterceptor extends Service implements HandlerInterceptor,ApplicationContextAware {
+public class BaseInterceptor implements HandlerInterceptor,ApplicationContextAware {
 
     protected final Logger logger = Logger.getLogger(getClass());
 
-    private final String DATATYPE = "datatype";
+    private final String DATATYPE = "type";
 
     protected ApplicationContext context;
 
@@ -39,14 +36,10 @@ public abstract class BaseInterceptor extends Service implements HandlerIntercep
     }
 
     public boolean preHandle(HttpServletRequest Request, HttpServletResponse Response, Object o) throws Exception {
-        if(!checkUri(Request,Response)){
-            Response.sendRedirect(Request.getContextPath()+"/login.html");
-            return false;
-        }
-        if(checkIP(Request)){
+       /* if(checkIP(Request)){
             Response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -86,51 +79,24 @@ public abstract class BaseInterceptor extends Service implements HandlerIntercep
         }
     }
 
-
-    public boolean checkUri(HttpServletRequest Request, HttpServletResponse response){
-        String path = pathHelper.getRequestUri(Request);
-        if(path.indexOf("/admin") != -1){
-            Cookie [] cookies = Request.getCookies();
-            if(cookies == null){
-                return false;
-            }
-            if(cookies.length == 0){
-                return false;
-            }
-            for (int i = 0; i < cookies.length; i ++){
-                if("authtoken".equals(cookies[i].getName())){
-                    if(cookies[i].getValue().length() == 0){
-                        return false;
-                    }else {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-
-    public boolean checkIP(HttpServletRequest Request){
+   /* public boolean checkIP(HttpServletRequest Request){
         String IP  = Request.getHeader("x-forwarded-for") == null? Request.getRemoteAddr(): Request.getHeader("x-forwarded-for");
         logger.debug("Check IP:"+IP);
         return pubService.IsNotAllowIP(IP);
-    }
+    }*/
 
 
     protected void Error(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
         logger.debug(e);
         if(e instanceof OperationException){
             Map result = new HashMap();
-            result.put("code",0);
+            result.put("code",-1);
             result.put("msg",e.getMessage());
             ServletOutputStream out = null;
             try{
                 httpServletResponse.setContentType("application/json;charset=utf-8");
                 out = httpServletResponse.getOutputStream();
-                byte [] data = JSON.toByteArray(result);
+                byte [] data = JsonUtil.toByteArray(result);
                 out.write(data,0,data.length);
                 out.flush();
                 out.close();
@@ -153,7 +119,7 @@ public abstract class BaseInterceptor extends Service implements HandlerIntercep
 
     private void dealUnHandlerError(HttpServletResponse httpServletResponse, Exception e){
         logger.error(e);
-        pubService.insertLog(e.getMessage(), DATE.getFull());
+       /* pubService.insertLog(e.getMessage(), DATE.getFull());*/
         httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     }
 
