@@ -82,6 +82,15 @@
             </array>
         </property>
     </bean>
+    <bean id="staticResourceHandler" class="site.btsearch.core.base.DefaultStaticResourceHandler"></bean>
+
+    <bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/*">staticResourceHandler</prop>
+            </props>
+        </property>
+    </bean>
 
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

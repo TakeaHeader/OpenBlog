@@ -89,28 +89,7 @@ public class BaseInterceptor implements HandlerInterceptor,ApplicationContextAwa
     protected void Error(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
         logger.debug(e);
         if(e instanceof OperationException){
-            Map result = new HashMap();
-            result.put("code",-1);
-            result.put("msg",e.getMessage());
-            ServletOutputStream out = null;
-            try{
-                httpServletResponse.setContentType("application/json;charset=utf-8");
-                out = httpServletResponse.getOutputStream();
-                byte [] data = JsonUtil.toByteArray(result);
-                out.write(data,0,data.length);
-                out.flush();
-                out.close();
-            }catch (Exception ex){
-                this.dealUnHandlerError(httpServletResponse,ex);
-            }finally {
-                if(out != null){
-                    try{
-                        out.close();
-                    }catch (IOException e1){
-                        logger.error(e1);
-                    }
-                }
-            }
+            printError(httpServletResponse,e);
         }else{
             this.dealUnHandlerError(httpServletResponse,e);
         }
@@ -118,9 +97,35 @@ public class BaseInterceptor implements HandlerInterceptor,ApplicationContextAwa
 
 
     private void dealUnHandlerError(HttpServletResponse httpServletResponse, Exception e){
+//        服务器抛出的错误,向外只提示服务器发生错误, 给出友好提示,并写入错误到日志表
         logger.error(e);
-       /* pubService.insertLog(e.getMessage(), DATE.getFull());*/
-        httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        Exception ex  = new RuntimeException("服务器发生错误!");
+        printError(httpServletResponse,ex);
+    }
+
+    private void printError(HttpServletResponse httpServletResponse, Exception e){
+        Map result = new HashMap();
+        result.put("code",-1);
+        result.put("msg",e.getMessage());
+        ServletOutputStream out = null;
+        try{
+            httpServletResponse.setContentType("application/json;charset=utf-8");
+            out = httpServletResponse.getOutputStream();
+            byte [] data = JsonUtil.toByteArray(result);
+            out.write(data,0,data.length);
+            out.flush();
+            out.close();
+        }catch (Exception ex){
+            this.dealUnHandlerError(httpServletResponse,ex);
+        }finally {
+            if(out != null){
+                try{
+                    out.close();
+                }catch (IOException e1){
+                    logger.error(e1);
+                }
+            }
+        }
     }
 
 }
