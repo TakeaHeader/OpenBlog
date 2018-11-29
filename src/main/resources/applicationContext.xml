@@ -20,7 +20,7 @@
     <mvc:annotation-driven />
 
     <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:jdbc.properties"></property>
+        <property name="location" value="classpath:config.properties"></property>
     </bean>
 
     <mvc:interceptors>

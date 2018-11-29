@@ -1,5 +1,6 @@
 package site.btsearch.core;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -36,10 +37,10 @@ public class BaseInterceptor implements HandlerInterceptor,ApplicationContextAwa
     }
 
     public boolean preHandle(HttpServletRequest Request, HttpServletResponse Response, Object o) throws Exception {
-       /* if(checkIP(Request)){
+        if(!checkIP(Request)){
             Response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             return false;
-        }*/
+        }
         return true;
     }
 
@@ -79,11 +80,12 @@ public class BaseInterceptor implements HandlerInterceptor,ApplicationContextAwa
         }
     }
 
-   /* public boolean checkIP(HttpServletRequest Request){
-        String IP  = Request.getHeader("x-forwarded-for") == null? Request.getRemoteAddr(): Request.getHeader("x-forwarded-for");
+    public boolean checkIP(HttpServletRequest Request){
+        /*String IP  = Request.getHeader("x-forwarded-for") == null? Request.getRemoteAddr(): Request.getHeader("x-forwarded-for");
         logger.debug("Check IP:"+IP);
-        return pubService.IsNotAllowIP(IP);
-    }*/
+        return pubService.IsNotAllowIP(IP);*/
+        return true;
+    }
 
 
     protected void Error(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {

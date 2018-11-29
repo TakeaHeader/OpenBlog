@@ -110,6 +110,12 @@
       <artifactId>aliyun-java-sdk-cms</artifactId>
       <version>5.0.4</version>
     </dependency>
+    <dependency>
+      <groupId>com.github.atomashpolskiy</groupId>
+      <artifactId>bt-core</artifactId>
+      <version>1.7</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>Blog</finalName>
@@ -143,8 +149,8 @@
   </build>
   <properties>
       <file.encoding>UTF-8</file.encoding>
-      <java.source.version>1.7</java.source.version>
-      <java.target.version>1.7</java.target.version>
+      <java.source.version>1.8</java.source.version>
+      <java.target.version>1.8</java.target.version>
       <spring.version>4.3.9.RELEASE</spring.version>
       <mysql.version>5.1.6</mysql.version>
       <log4j.version>1.2.17</log4j.version>
