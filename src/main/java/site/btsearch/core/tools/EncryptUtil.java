@@ -13,9 +13,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
-public final class Util {
+public final class EncryptUtil {
 
-    private Util(){}
+    private EncryptUtil(){}
 
     public static String getMD5(String keyword){
         MessageDigest messageDigest = null;

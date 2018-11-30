@@ -26,31 +26,44 @@ public class DefaultStaticResourceHandler implements HttpRequestHandler,ServletC
 
     private ServletContext servletContext;
 
+    private StaticResourceInterceptor staticResourceInterceptor;
+
+    private HttpServletRequest request;
+
+    private HttpServletResponse response;
+
+    public void setStaticResourceInterceptor(StaticResourceInterceptor staticResourceInterceptor) {
+        this.staticResourceInterceptor = staticResourceInterceptor;
+    }
+
     public void setServletContext(ServletContext servletContext) {
         this.servletContext = servletContext;
     }
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.request = request;
+        this.response = response;
         String url = pathHelper.getLookupPathForRequest(request);
-        String real = servletContext.getRealPath("/");
         if(url.indexOf(QXML) != -1){
-            if(!checkResource()){
+            if(!CheckResource()){
                 response.sendError(HttpServletResponse.SC_FORBIDDEN,"禁止访问");
                 return;
             }
         }else{
-            if(KZFW){
-                RequestDispatcher rd = this.servletContext.getNamedDispatcher(this.defaultServletName);
-                rd.forward(request,response);
-            }else{
+            if(!KZFW){
                 response.sendError(HttpServletResponse.SC_FORBIDDEN,"禁止访问");
+                return;
             }
         }
+        RequestDispatcher rd = this.servletContext.getNamedDispatcher(this.defaultServletName);
+        rd.forward(request,response);
     }
 
-    public boolean checkResource(){
-
-        return  false;
+    public boolean CheckResource(){
+        if(this.staticResourceInterceptor != null){
+            return staticResourceInterceptor.match(request,response);
+        }
+        return true;
     }
 
 

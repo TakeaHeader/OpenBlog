@@ -14,6 +14,10 @@ public class DateUtil {
 
     public static String getDateString(String pattern){
         Date date = new Date();
+        return getDateString(date,pattern);
+    }
+
+    public static String getDateString(Date date,String pattern){
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);
     }

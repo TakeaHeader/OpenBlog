@@ -4,7 +4,6 @@ site\btsearch\api\core\DemoController.class
 site\btsearch\core\mapper\PubMapper.class
 site\btsearch\core\helper\PropertiesReader.class
 site\btsearch\core\interfaces\Service.class
-site\btsearch\core\tools\Util.class
 site\btsearch\core\interfaces\ServiceAware.class
 site\btsearch\core\tools\Constant.class
 site\btsearch\core\base\DefaultStaticResourceHandler.class
