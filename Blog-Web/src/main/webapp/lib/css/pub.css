@@ -1,0 +1,11 @@
+@import "font-awesome.min.css";
+*{margin: 0;padding: 0;outline: none;}
+html,body{width: 100%;height:100%;}
+ul,li{list-style: none;}
+
+.lf{float: left}
+.rg{float: right}
+.oh{overflow: hidden}
+
+.mr20{margin-right: 10px;}
+.ml20{margin-left: 10px;}

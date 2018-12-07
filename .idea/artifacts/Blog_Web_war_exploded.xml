@@ -1,12 +1,18 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Blog:war exploded">
-    <output-path>$PROJECT_DIR$/target/Blog-1.0-SNAPSHOT</output-path>
+  <artifact type="exploded-war" name="Blog-Web:war exploded">
+    <output-path>$PROJECT_DIR$/Blog-Web/target/Blog-Web-1.0-SNAPSHOT</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="Blog" />
+          <element id="module-output" name="Blog-Web" />
         </element>
         <element id="directory" name="lib">
+          <element id="archive" name="Blog-Core-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="Blog-Core" />
+          </element>
+          <element id="archive" name="Blog-Api-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="Blog-Api" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.3.9.RELEASE" />
@@ -42,9 +48,9 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/Blog-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/Blog-Web/target/Blog-Web-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="Blog/web/Web" />
+      <element id="javaee-facet-resources" facet="Blog-Web/web/Web" />
     </root>
   </artifact>
 </component>
