@@ -15,18 +15,15 @@
         <dependency>
             <groupId>site.btsearch</groupId>
             <artifactId>Blog-Core</artifactId>
-            <version>${site.btsearch}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>site.btsearch</groupId>
             <artifactId>Blog-Api</artifactId>
-            <version>${site.btsearch}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
-    <properties>
-        <site.btsearch>1.0-SNAPSHOT</site.btsearch>
-    </properties>
 
     <build>
         <pluginManagement>
@@ -38,7 +35,7 @@
                     <configuration>
                         <charset>utf-8</charset>
                         <contextReloadable>true</contextReloadable>
-                        <port>80</port>
+                        <port>8090</port>
                         <path>/</path>
                         <uriEncoding>UTF-8</uriEncoding>
                         <contextFile>src/main/resources/context.xml</contextFile>

@@ -6,14 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Blog-Admin" />
         <module name="Blog-Web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="Blog" target="1.5" />
+      <module name="Blog-Admin" target="1.5" />
       <module name="Blog-Api" target="1.5" />
       <module name="Blog-Core" target="1.5" />
+      <module name="Blog-Parent" target="1.5" />
+      <module name="Blog-Util" target="1.5" />
       <module name="Blog-Web" target="1.5" />
+      <module name="BlogAdmin" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

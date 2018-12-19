@@ -3,9 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Blog.iml" filepath="$PROJECT_DIR$/Blog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Blog-Admin/Blog-Admin.iml" filepath="$PROJECT_DIR$/Blog-Admin/Blog-Admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/Blog-Api/Blog-Api.iml" filepath="$PROJECT_DIR$/Blog-Api/Blog-Api.iml" />
       <module fileurl="file://$PROJECT_DIR$/Blog-Core/Blog-Core.iml" filepath="$PROJECT_DIR$/Blog-Core/Blog-Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Blog-Parent/Blog-Parent.iml" filepath="$PROJECT_DIR$/Blog-Parent/Blog-Parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Blog-Util/Blog-Util.iml" filepath="$PROJECT_DIR$/Blog-Util/Blog-Util.iml" />
       <module fileurl="file://$PROJECT_DIR$/Blog-Web/Blog-Web.iml" filepath="$PROJECT_DIR$/Blog-Web/Blog-Web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BlogAdmin.iml" filepath="$PROJECT_DIR$/BlogAdmin.iml" />
     </modules>
   </component>
 </project>
